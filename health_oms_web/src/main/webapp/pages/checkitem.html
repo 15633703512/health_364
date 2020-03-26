@@ -242,7 +242,20 @@
                 },
                 //分页查询
                 findPage() {
+                    //封装请求参数 (当前页、默认每页记录数、查询条件)
+                    var params = {
+                        currentPage: this.pagination.currentPage,
+                        pageSize: this.pagination.pageSize,
+                        queryString: this.pagination.queryString
+                    };
 
+                    axios.post(this.backend_url+"/checkitem/findPage.do", params).then((response)=>{
+                        //浏览器控制台打印
+                        console.log(response.data);
+                        //把数据集和总记录数赋值给模型
+                        this.pagination.total = response.data.total;
+                        this.dataList = response.data.rows
+                    });
                 },
                 // 重置表单
                 resetForm(formName) {
