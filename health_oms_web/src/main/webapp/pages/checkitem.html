@@ -278,7 +278,10 @@
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
-
+                    //把当前页码 赋值给vue中的currentPage
+                    this.pagination.currentPage = currentPage;
+                    //重新分页查询
+                    this.findPage();
                 },
                 // 删除
                 handleDelete(row) {
