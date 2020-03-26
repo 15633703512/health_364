@@ -1,9 +1,27 @@
 package com.itheima.health.entity;
 
-public class Result {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @Author likepei
+ * @Date 2019/12/30 13:42
+ * @Version v1.0
+ * @Description 封装返回结果
+ */
+public class Result implements Serializable {
+
     private Boolean flag; //执行结果,true为执行成功, false为执行失败
     private String message; //返回结果信息
     private Object data; //返回数据
+
+    public Result() {
+    }
 
     public Result(Boolean flag, String message) {
         this.flag = flag;
@@ -14,15 +32,6 @@ public class Result {
         this.flag = flag;
         this.message = message;
         this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "flag=" + flag +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
     }
 
     public Boolean getFlag() {
@@ -47,5 +56,14 @@ public class Result {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "flag=" + flag +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
     }
 }
