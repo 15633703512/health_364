@@ -237,8 +237,14 @@
                 handleAdd () {
 
                 },
+                //查询按钮使用的分页查询
                 findPageByCondition(){
-
+                    //若有查询条件, 把当前页码设置为第一页
+                    if(this.pagination.queryString != null && this.pagination.queryString.length >0){
+                        this.pagination.currentPage = 1;
+                    }
+                    //调用分页查询
+                    this.findPage();
                 },
                 //分页查询
                 findPage() {
