@@ -2,6 +2,7 @@ package com.itheima.health.service;
 
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
+import com.itheima.health.pojo.CheckItem;
 
 /**
  * @Author likepei
@@ -19,4 +20,10 @@ public interface CheckItemService {
      * 属性三 queryString: 查询条件
      */
     PageResult pageQuery(QueryPageBean queryPageBean);
+
+    /**
+     * 添加检查项
+     * @param checkItem
+     */
+    void add(CheckItem checkItem);
 }

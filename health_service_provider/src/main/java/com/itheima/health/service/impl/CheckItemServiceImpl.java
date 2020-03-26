@@ -40,4 +40,11 @@ public class CheckItemServiceImpl implements CheckItemService {
         //创建PageResult结果对象( 检查项的总记录数, 当前页显示需要的10条检查项数据 )
         return new PageResult(page.getTotal(), page.getResult());
     }
+
+    //添加检查项
+    @Override
+    public void add(CheckItem checkItem) {
+        //调用dao中, 添加检查项方法
+        checkItemDao.add(checkItem);
+    }
 }

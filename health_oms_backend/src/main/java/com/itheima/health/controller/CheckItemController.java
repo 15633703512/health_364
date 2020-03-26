@@ -1,8 +1,11 @@
 package com.itheima.health.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.itheima.health.common.MessageConst;
 import com.itheima.health.entity.PageResult;
 import com.itheima.health.entity.QueryPageBean;
+import com.itheima.health.entity.Result;
+import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.service.CheckItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +26,27 @@ public class CheckItemController {
     //依赖注入
     @Reference
     private CheckItemService checkItemService;
+
+    /**
+     * 添加检查项
+     * 1.调用service中的添加方法
+     * 2.添加成功, 返回添加成功的信息
+     * 3.添加失败, 返回添加失败的信息
+     * @param checkItem
+     * @return
+     */
+    @RequestMapping("/add")
+    public Result add(@RequestBody CheckItem checkItem){
+        try {
+            //调用service中的添加方法
+            checkItemService.add(checkItem);
+            //添加成功, 返回添加成功的信息
+            return new Result(true, MessageConst.ADD_CHECKITEM_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, MessageConst.ADD_CHECKITEM_FAIL);
+        }
+    }
 
     /**
      * 查询分页数据

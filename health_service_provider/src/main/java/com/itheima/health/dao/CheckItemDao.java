@@ -19,4 +19,9 @@ public interface CheckItemDao {
      */
     public Page<CheckItem> selectByCondition(@Param("queryString") String queryString);
 
+    /**
+     * 添加检查项
+     * @param checkItem
+     */
+    void add(CheckItem checkItem);
 }
