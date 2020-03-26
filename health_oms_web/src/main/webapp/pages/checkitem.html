@@ -266,16 +266,18 @@
                 // 重置表单
                 resetForm(formName) {
                     //验证提示不为空, 清空之前的验证消息
-
+                    if(this.$refs[formName] != null){
+                        this.$refs[formName].resetFields();
+                    }
                 },
                 // 弹出添加窗口
                 handleCreate() {
                     //清空表单数据
-
+                    this.formData = {};
                     //清空上次验证的数据提示
-
+                    this.resetForm('dataAddForm');
                     //让窗口可见
-
+                    this.dialogFormVisible = true;
                 },
                 // 弹出编辑窗口
                 handleUpdate(row) {
