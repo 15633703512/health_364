@@ -235,7 +235,31 @@
                 },
                 //添加
                 handleAdd () {
-
+                    //校验表单输入项是否合法
+                    this.$refs['dataAddForm'].validate((isValid => {
+                        if(isValid){
+                            //表单数据校验通过，发送ajax请求将表单数据提交到后台
+                            axios.post(this.backend_url+"/checkitem/add.do", this.formData).then((response)=>{
+                                //判断后台返回的flag值, true表示添加操作成功, false为添加操作失败
+                                if(response.data.flag){
+                                    //保存成功, 弹出成功提示, 显示服务返回的消息
+                                    this.$message.success(response.data.message);
+                                } else {
+                                    //保存失败, 弹出错误提示, 显示服务返回的消息
+                                    this.$message.error(response.data.message);
+                                }
+                            }).finally(()=>{
+                                //无论什么情况，都重新请求当前分页, 隐藏新增窗口
+                                //隐藏新增窗口
+                                this.dialogFormVisible = false;
+                                //重新请求当前分页
+                                this.findPage();
+                            })
+                        } else {
+                            //表单验证失败，弹出验证失败提示
+                            this.$message.error("验证失败");
+                        }
+                    }))
                 },
                 //查询按钮使用的分页查询
                 findPageByCondition(){
